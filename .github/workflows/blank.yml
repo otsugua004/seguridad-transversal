@@ -27,5 +27,6 @@ jobs:
 
       - name: Deploy files
         run: |
-          oc project otsugua-dev
+          oc project otsugua04-dev
           oc apply -f security.yaml
+          
