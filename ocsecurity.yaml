@@ -7,19 +7,18 @@ metadata:
   namespace: otsugua04-dev
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: RoleBinding
 metadata:
-  name: otsugua-cicd-role
+  name: otsugua-cicd-role-binding
   namespace: otsugua04-dev
-rules:
-- apiGroups: [""]
-  resources: ["pods", "services"]
-  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-  resources: ["configmaps"]
-  verbs: ["get","list","watch","create","update","patch","delete"]
-- apiGroups: ["apps.openshift.io"]
-  resources: ["deploymentconfigs"]
-  verbs: ["get","list","watch","create","update","patch","delete"]
+subjects:
+- kind: ServiceAccount
+  name: otsugua-cicd-serviceaccount
+  namespace: otsugua04-dev
+roleRef:
+  kind: ClusterRole
+  name: edit
+  apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -32,5 +31,5 @@ subjects:
   namespace: otsugua04-dev
 roleRef:
   kind: Role
-  name: otsugua-cicd-role
+  name: rbac-edit
   apiGroup: rbac.authorization.k8s.io
