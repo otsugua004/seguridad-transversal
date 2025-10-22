@@ -23,7 +23,7 @@ roleRef:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: otsugua-cicd-role-binding
+  name: otsugua-cicd-role-binding-2
   namespace: otsugua04-dev
 subjects:
 - kind: ServiceAccount
